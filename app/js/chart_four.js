@@ -1,28 +1,28 @@
 $(document).ready(function(){
 
-    // Three chart
+    // Four chart
 
     dat = [['t', 'f(t)'],]
-    for (var i = 0; i < 22; i++) {
-      dat.push([i,normalRasp(i, 14, 2)]);
+    for (var i = 0; i < 40; i++) {
+      dat.push([i, exps(i, 0.1)]);
     }
 
-    drawChart(dat, 'Третий компонент системы', 'three_charts')
+    drawChart(dat, 'Четвертый компонент системы', 'four_charts')
 
 
-    $('#th_charts').on('click', 'button', function () {
+    $('#fo_chart').on('click', 'button', function () {
       console.log('Вжух');
-      var a = Number($('#num31').val());
+      var a = Number($('#num41').val());
       console.log(a);
-      var b = Number($('#num32').val());
+      var b = Number($('#num42').val());
       console.log(b);
       var dat = [
         ['t', 'f(t)'],
       ];
       for (var i = a; i<b; i++) {
-        dat.push([i,normalRasp(i, 14, 2)]);
+        dat.push([i,exps(i, 0.1)]);
       }
-      drawChart(dat, 'Третий компонент системы', 'three_charts')
+      drawChart(dat, 'Четвертый компонент системы', 'four_charts')
     })
 
 });
@@ -48,12 +48,10 @@ function drawChart(dat, title, idElem){
   }
 }
 
-function normalRasp(t, m, q) {
-  // Нормальное распределение
+function exps(t, l) {
+  // Экспоточиональное распределение
 
-  var k = 1/(q*Math.sqrt(2*Math.PI));
-  var s = -(Math.pow((t-m),2))/(2*q*q);
-  var end = k * Math.pow(Math.E, s);
+  var end = l * Math.pow(Math.E, (-(l) * t));
   end = Math.fround(end);
   return end;
 }
