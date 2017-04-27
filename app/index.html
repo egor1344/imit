@@ -144,8 +144,31 @@
       </div>
 
       <div class="box five">
-        <a href="#" class="num">5</a>
+        <a href="#" class="btn btn-primary link" role="button" data-toggle="modal" data-target=".modal-5">5</a>
       </div>
+
+      <div class="modal fade modal-5" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content" id="fi_chart">
+            <div class="modal-header">
+              <h5 class="modal-title">График отказов для четвертого компонента системы</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="input-group" id="botom-group">
+              <span class="input-group-addon" id="btnGroupAddon">От</span>
+              <input id="num51" type="number" class="form-control" placeholder="С числа" aria-describedby="btnGroupAddon">
+              <span class="input-group-addon" id="btnGroupAddon1">До</span>
+              <input id="num52" type="number" class="form-control" placeholder="До числа" aria-describedby="btnGroupAddon1">
+              <button type="button" class="btn btn-success" id="calc_five">Расчитать</button>
+            </div>
+              <div id="five_charts" style="width: 1900px; height: 500px">
+              </div>
+          </div>
+        </div>
+      </div>
+
       <div class="box six">
         <a href="#" class="num">6</a>
       </div>
@@ -163,6 +186,7 @@
     <script src="/js/chart_two.js" charset="utf-8"></script>
     <script src="/js/chart_three.js" charset="utf-8"></script>
     <script src="/js/chart_four.js" charset="utf-8"></script>
+    <script src="/js/chart_five.js" charset="utf-8"></script>
 
   </body>
 </html>
