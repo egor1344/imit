@@ -1,25 +1,28 @@
 $(document).ready(function(){
-    // First charts
-    var dat = [['t', 'f(t)'],];
+
+    // Three chart
+
+    dat = [['t', 'f(t)'],]
     for (var i = 0; i < 22; i++) {
-      dat.push([i,normalRasp(i, 16, 2)]);
+      dat.push([i,normalRasp(i, 14, 2)]);
     }
-    drawChart(dat, 'Первый компонент системы', 'first_charts')
+
+    drawChart(dat, 'Третий компонент системы', 'three_charts')
 
 
-    $('#f_chart').on('click', 'button', function () {
+    $('#t_charts').on('click', 'button', function () {
       console.log('Вжух');
-      var a = Number($('#num11').val());
+      var a = Number($('#num31').val());
       console.log(a);
-      var b = Number($('#num12').val());
+      var b = Number($('#num32').val());
       console.log(b);
       var dat = [
         ['t', 'f(t)'],
       ];
       for (var i = a; i<b; i++) {
-        dat.push([i,normalRasp(i, 16, 2)]);
+        dat.push([i,normalRasp(i, 14, 2)]);
       }
-      drawChart(dat, 'Первый компонент системы', 'first_charts')
+      drawChart(dat, 'Третий компонент системы', 'three_charts')
     })
 
 });
