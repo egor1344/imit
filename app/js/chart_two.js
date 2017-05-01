@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     dat = [['t', 'f(t)'],]
     for (var i = 0; i < 22; i++) {
-      dat.push([i,ravnomerRaspred(i, 2, 14)]);
+      dat.push([i, ravnomerRaspred(i, 2, 14)]);
     }
 
     drawChart(dat, 'Второй компонент системы', 'two_charts')

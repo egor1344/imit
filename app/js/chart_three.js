@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     dat = [['t', 'f(t)'],]
     for (var i = 0; i < 22; i++) {
-      dat.push([i,normalRasp(i, 14, 2)]);
+      dat.push([i, normalRasp(i, 14, 2)]);
     }
 
     drawChart(dat, 'Третий компонент системы', 'three_charts')
