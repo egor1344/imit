@@ -2,13 +2,13 @@
   box-shadow: 0px 2px 0px 0px;
   border: 1px solid black;
   width: 30px;
-  position: fixed; }
+  position: absolute; }
 
 .line-left {
   box-shadow: 2px 0px 0px 0px;
   border: 1px solid black;
   height: 30px;
-  position: fixed; }
+  position: absolute; }
 
 .line-1 {
   left: 340px;
