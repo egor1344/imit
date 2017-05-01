@@ -10,19 +10,36 @@ $(document).ready(function(){
     drawChart(dat, 'Второй компонент системы', 'two_charts')
 
 
-    $('#t_charts').on('click', 'button', function () {
-      console.log('Вжух');
+    $('#t_charts').on('click', '#calc_two', function () {
+      // console.log('Вжух');
       var a = Number($('#num21').val());
-      console.log(a);
+      // console.log(a);
       var b = Number($('#num22').val());
-      console.log(b);
       var dat = [
-        ['t', 'f(t)'],
+        ['t', 'Вероятность отказа'],
       ];
-      for (var i = a; i<b; i++) {
-        dat.push([i,ravnomerRaspred(i, 2, 14)]);
+      var rez = 0.0;
+      var rand = 0.0;
+      var fail = 0;
+      var total_fail = 0;
+      for (var i = a; i <= b; i++) {
+        rez = ravnomerRaspred(i, 2, 14);
+        fail = 0;
+        for (var j = 0; j < 20000; j++) {
+          rand = Math.random()
+          if (rez >= rand) {
+            fail = fail + 1;
+            total_fail = total_fail + 1;
+          }
+        }
+      console.log(fail, total_fail);
+      fail = 1 - (fail / 20000);
+      dat.push([i, fail]);
       }
-      drawChart(dat, 'Второй компонент системы', 'two_charts')
+      console.log(b-a);
+      total_fail = 1 - (total_fail / (20000 * (b - a + 1)));
+      $('#summary_two').text(Math.fround(total_fail));
+      drawChart(dat, 'График отказов для второго компонента системы', 'two_charts')
     })
 
 });
