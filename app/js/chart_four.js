@@ -15,14 +15,31 @@ $(document).ready(function(){
       var a = Number($('#num41').val());
       console.log(a);
       var b = Number($('#num42').val());
-      console.log(b);
       var dat = [
-        ['t', 'f(t)'],
+        ['t', 'Вероятность отказа'],
       ];
-      for (var i = a; i<b; i++) {
-        dat.push([i,exps(i, 0.1)]);
+      var rez = 0.0;
+      var rand = 0.0;
+      var fail = 0;
+      var total_fail = 0;
+      for (var i = a; i <= b; i++) {
+        rez = exps(i, 0.1);
+        fail = 0;
+        for (var j = 0; j < 20000; j++) {
+          rand = Math.random()
+          if (rez >= rand) {
+            fail = fail + 1;
+            total_fail = total_fail + 1;
+          }
+        }
+      console.log(fail, total_fail);
+      fail = 1 - (fail / 20000);
+      dat.push([i, fail]);
       }
-      drawChart(dat, 'Четвертый компонент системы', 'four_charts')
+      console.log(b-a);
+      total_fail = 1 - (total_fail / (20000 * (b - a + 1)));
+      $('#summary_four').text(Math.fround(total_fail));
+      drawChart(dat, 'Графие отказов для четвертого компонента системы', 'four_charts')
     })
 
 });
