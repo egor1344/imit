@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     dat = [['t', 'f(t)'],]
     for (var i = 0; i < 22; i++) {
-      dat.push([i, normalRasp(i, 14, 2)]);
+      dat.push([i, normalRasp(i, 12, 2)]);
     }
 
     drawChart(dat, 'Третий компонент системы', 'three_charts')
@@ -23,7 +23,7 @@ $(document).ready(function(){
       var fail = 0;
       var total_fail = 0;
       for (var i = a; i <= b; i++) {
-        rez = normalRasp(i, 14, 2);
+        rez = normalRasp(i, 12, 2);
         fail = 0;
         for (var j = 0; j < 20000; j++) {
           rand = Math.random()

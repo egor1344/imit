@@ -13,7 +13,7 @@ $(document).ready(function() {
 
   $('#end_chart').on('click', '#calc_end', function() {
     var a = Number($('#end_num').val());
-    console.log(a);
+    // console.log(a);
     var dat = [
       ['t', 'Вероятность отказа'],
     ];
@@ -25,11 +25,12 @@ $(document).ready(function() {
     for (var i = 0; i <= a; i++) {
       rez[0] = normalRasp(i, 16, 2); // one
       rez[1] = ravnomerRaspred(i, 2, 14); // two
-      rez[2] = normalRasp(i, 14, 2); // three
+      rez[2] = normalRasp(i, 12, 2); // three
       rez[3] = exps(i, 0.1); // four
-      rez[4] = treyg(i, 2, 18); // five
+      var m = treyg(i, 2, 18); // five
+      rez[4] = (m > 0)? m: 0;
       rez[5] = exps(i, 0.05); // six
-      rez[6] = ravnomerRaspred(i, 1, 19); // seven
+      rez[6] = ravnomerRaspred(i, 1, 29); // seven
       fail = 0;
       for (var j = 0; j < 20000; j++) {
         for (var k = 0; k < rez.length; k++) {
@@ -46,7 +47,7 @@ $(document).ready(function() {
           }
         }
       }
-      console.log(fail, total_fail);
+      console.log('Шаг:' + i + " Отказов на шаге: " + fail + " Всего отказов: " + total_fail);
       fail = 1 - (fail / (20000*7));
       dat.push([i, fail]);
     }
