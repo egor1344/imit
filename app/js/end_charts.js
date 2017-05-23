@@ -13,7 +13,7 @@ $(document).ready(function() {
 
   $('#end_chart').on('click', '#calc_end', function() {
     var a = Number($('#end_num').val());
-    console.log(a);
+    // console.log(a);
     var dat = [
       ['t', 'Вероятность отказа'],
     ];
@@ -22,14 +22,16 @@ $(document).ready(function() {
     var fail = 0;
     var f_l = [0, 0, 0, 0, 0, 0, 0];
     var total_fail = 0;
+    var time_otkaz = [];
     for (var i = 0; i <= a; i++) {
       rez[0] = normalRasp(i, 16, 2); // one
       rez[1] = ravnomerRaspred(i, 2, 14); // two
-      rez[2] = normalRasp(i, 14, 2); // three
+      rez[2] = normalRasp(i, 12, 2); // three
       rez[3] = exps(i, 0.1); // four
-      rez[4] = treyg(i, 2, 18); // five
+      var m = treyg(i, 2, 18); // five
+      rez[4] = (m > 0)? m: 0;
       rez[5] = exps(i, 0.05); // six
-      rez[6] = ravnomerRaspred(i, 1, 19); // seven
+      rez[6] = ravnomerRaspred(i, 1, 29); // seven
       fail = 0;
       for (var j = 0; j < 20000; j++) {
         for (var k = 0; k < rez.length; k++) {
@@ -43,15 +45,22 @@ $(document).ready(function() {
         if (f_l[0] && f_l[1] && f_l[2] && (f_l[3] || f_l[4]) && (f_l[5] && f_l[6])) {
           total_fail = total_fail + 1;
           fail = fail + 1;
+          time_otkaz.push(i);
           }
         }
       }
-      console.log(fail, total_fail);
+      console.log('Шаг:' + i + " Отказов на шаге: " + fail + " Всего отказов: " + total_fail);
       fail = 1 - (fail / (20000*7));
       dat.push([i, fail]);
     }
     total_fail = 1 - (total_fail / (20000 * (a + 1) * 7));
     $('#summary_end').text(Math.fround(total_fail*100));
+    var sum = 0;
+    for (var i = 0; i < time_otkaz.length; i++) {
+      sum += time_otkaz[i];
+    }
+    sum = sum / (20000 * (a + 1) * 7);
+    $('#otkaz_time').text(Math.fround(sum));
     drawChart(dat, 'Итоговый график отказов системы', 'end_charts')
   })
 

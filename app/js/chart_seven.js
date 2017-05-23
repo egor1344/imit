@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     dat = [['t', 'f(t)'],]
     for (var i = 0; i < 22; i++) {
-      dat.push([i, ravnomerRaspred(i, 1, 19)]);
+      dat.push([i, ravnomerRaspred(i, 1, 29)]);
     }
 
     drawChart(dat, 'Седьмой компонент системы', 'seven_charts')
@@ -23,7 +23,7 @@ $(document).ready(function(){
       var fail = 0;
       var total_fail = 0;
       for (var i = a; i <= b; i++) {
-        rez = ravnomerRaspred(i, 1, 19);
+        rez = ravnomerRaspred(i, 1, 29);
         fail = 0;
         for (var j = 0; j < 20000; j++) {
           rand = Math.random()

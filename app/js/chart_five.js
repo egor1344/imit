@@ -1,10 +1,11 @@
 $(document).ready(function(){
 
-    // Four chart
+    // Five chart
 
     dat = [['t', 'f(t)'],]
     for (var i = 0; i < 40; i++) {
-      dat.push([i, treyg(i, 2, 18)]);
+      var m = treyg(i, 2, 18);
+      dat.push([i,(m > 0 ) ? m : 0]);
     }
 
     drawChart(dat, 'Пятый компонент системы', 'five_charts')
@@ -69,7 +70,6 @@ function treyg(x, a, b) {
   // Симметричное треугольное распределение
 
   var tempA = (2/((b-a)*(b-a)));
-  var end =(2/(b-a)) - tempA*Math.abs(a+b-2*x);
-  end = Math.fround(end);
+  var end = (2/(b-a)) - tempA*Math.abs(a+b-2*x);
   return end;
-}
+};
