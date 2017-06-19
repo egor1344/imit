@@ -6,7 +6,7 @@ $(document).ready(function() {
     ['t', 'f(t)'],
   ]
   for (var i = 0; i < 50; i++) {
-    dat.push([i, Math.random() - 0.5]);
+    dat.push([i, 1]);
   }
 
   drawChart(dat, 'Итоговый график отказов системы', 'end_charts')
@@ -60,7 +60,7 @@ $(document).ready(function() {
       sum += time_otkaz[i];
     }
     sum = sum / (20000 * (a + 1) * 7);
-    $('#otkaz_time').text(Math.fround(sum));
+    $('#otkaz_time').text(Math.fround(sum, 3));
     drawChart(dat, 'Итоговый график отказов системы', 'end_charts')
   })
 
