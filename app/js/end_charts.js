@@ -17,13 +17,14 @@ $(document).ready(function() {
     var dat = [
       ['t', 'Вероятность отказа'],
     ];
+    dat.push([0, 0]);
     var rez = [0, 0, 0, 0, 0, 0, 0];
     var rand = 0.0;
     var fail = 0;
     var f_l = [0, 0, 0, 0, 0, 0, 0];
     var total_fail = 0;
     var time_otkaz = [];
-    for (var i = 0; i <= a; i++) {
+    for (var i = 1; i <= a; i++) {
       rez[0] = normalRasp(i, 16, 2); // one
       rez[1] = ravnomerRaspred(i, 2, 14); // two
       rez[2] = normalRasp(i, 12, 2); // three
@@ -45,7 +46,9 @@ $(document).ready(function() {
         if (f_l[0] && f_l[1] && f_l[2] && (f_l[3] || f_l[4]) && (f_l[5] && f_l[6])) {
           total_fail = total_fail + 1;
           fail = fail + 1;
-          time_otkaz.push(i);
+          if (i <= 14){
+            time_otkaz.push(i);
+          }
           }
         }
       }
@@ -59,7 +62,7 @@ $(document).ready(function() {
     for (var i = 0; i < time_otkaz.length; i++) {
       sum += time_otkaz[i];
     }
-    sum = sum / (20000 * (a + 1) * 7);
+    sum = sum / (20000 * 14 * 2);
     $('#otkaz_time').text(Math.fround(sum, 3));
     drawChart(dat, 'Итоговый график отказов системы', 'end_charts')
   })
